@@ -26,28 +26,19 @@ export class ClaimComponent {
     ) { }
     minDate!:Date;
   ngOnInit(): void {
-    // this.claimForm = this.formBuilder.group({
-    //   memberName:['',[Validators.required,Validators.pattern('^[A-Za-z ]+$'),Validators.minLength(3)]],
-    //   dateOfAdmission:['',[Validators.required,Validators.minLength(1)]],
-    //   dateOfDischarge:['',[Validators.required,Validators.minLength(1)]],
-    //   providerName:['',[Validators.required,Validators.pattern('^[A-Za-z ]+$'),Validators.minLength(3)]],
-    //   totalBillAmount:['',[Validators.required,Validators.pattern('^[0-9 ]+$'),Validators.minLength(1)]],
-    //   userId:['',[Validators.required,Validators.pattern('^[A-Za-z0-9 ]+$'),Validators.minLength(1)]],
-     
-      
-    // });
-
     this.claimForm = this.formBuilder.group({
-      memberName: new FormControl([null,[Validators.required,Validators.minLength(3)]])
+      memberName:['',[Validators.required,Validators.pattern('^[A-Za-z ]+$'),Validators.minLength(3)]],
+      dateOfAdmission:['',[Validators.required,Validators.minLength(1)]],
+      dateOfDischarge:['',[Validators.required,Validators.minLength(1)]],
+      providerName:['',[Validators.required,Validators.pattern('^[A-Za-z ]+$'),Validators.minLength(3)]],
+      totalBillAmount:['',[Validators.required,Validators.pattern('^[0-9 ]+$'),Validators.minLength(1)]],
+      userId:['',[Validators.required,Validators.pattern('^[A-Za-z0-9 ]+$'),Validators.minLength(1)]],
      
       
     });
+
   }
-  onChange(event: any): void { 
-    
-    console.log("hi");
-   }
-get f(){ return this.claimForm.controls }
+
   placeClaim() { 
     this.memberServices.registerClaim(this.claimForm.value).subscribe(
       success => {

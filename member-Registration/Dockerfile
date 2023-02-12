@@ -1,15 +1,11 @@
-FROM node:19.3.0
-
+# satge 1
+FROM node:19.3.0 as node
 WORKDIR /app
-
-COPY package*.json ./
-
+COPY . .
 RUN npm install
 
-COPY . .
+RUN npm run build --prod
 
-ENV PORT=3000
-
-EXPOSE 3000
-
-CMD [ "npm", "start" ]
+#stage 2
+FROM nginx:alpine
+COPY --from=node app/dist/login-form /usr/share/nginx/html
